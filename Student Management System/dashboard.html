@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container"></div>
+</body>
+</html>
+
+<script>
+
+//let dash = JSON.parse(localStorage.getItem("Students")) 
+
+
+
+function Display_Dashboard(){
+       //console.log("data",data)
+    let data = JSON.parse(localStorage.getItem("Students"))
+      let Container = document.getElementById('container')
+       data.map(function(elem,index){
+        let div= document.createElement('div')
+           
+        let img= document.createElement('image')
+        img.src= elem.image
+
+        let p = document.createElement('p');
+        p.innerText= elem.name
+
+        let btn= document.createElement('button')
+        btn.innerText= "remove"
+        btn.addEventListener("click", function(){
+              remove(elem,index)
+        })
+           
+        div.append(img,p,btn)
+        Container.append(div)
+
+           
+
+       })
+  }
+
+  function remove(elem,index){
+      console.log("orr",(elem,index))
+    let data = JSON.parse(localStorage.getItem("Students"))
+
+    data.splice(index,1)
+    localStorage.setItem("Students",JSON.stringify(data))   //reset
+    window.location.reload()
+
+  }
+
+  Display_Dashboard()
+
+
+//36.00
+
+
+</script>
